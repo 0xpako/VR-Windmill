@@ -5,6 +5,7 @@ Created using A-frame, Three.js
 Demo viewable at: https://vr-windmill.vercel.app/
 
 Orignally created by Alvin Wan
+
 Recreated by Mateusz Paczkowski ~Skillshare student of Alvin Wan :)
 
 * inspiration: https://www.pexels.com/photo/architecture-blade-building-church-161123/
