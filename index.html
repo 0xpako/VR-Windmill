@@ -1,0 +1,119 @@
+<!--
+
+Created by Alvin Wan
+
+* inspiration: https://www.pexels.com/photo/architecture-blade-building-church-161123/
+* inspiration landscape: https://www.pexels.com/photo/agriculture-antique-architecture-blue-219971/
+* inspiration windmill: https://www.pexels.com/photo/sorae-ecology-park-in-korea-3405489/
+-->
+
+<html>
+  <head>
+    <title>Stylized Low Poly Windmill in Virtual Reality | Alvin Wan</title>
+    <script src="https://aframe.io/releases/1.1.0/aframe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/alvinwan/aframe-low-poly@0.0.5/dist/aframe-low-poly.min.js"></script>
+    <script src="https://cdn.rawgit.com/matthewbryancurtis/aframe-star-system-component/db4f1030/index.js"></script>
+    <script src="./ocean.js"></script>
+  </head>
+  <body>
+    <a-scene>
+      <a-sky color="#0f011a"></a-sky>
+      <a-entity star-system></a-entity>
+      
+      <!-- Lights -->
+      <a-entity light="
+          type: directional;
+          castShadow: true;
+          intensity: 0.2;
+          color: #6909b3"
+        position="5 3 1"></a-entity>
+      <a-entity light="
+          type: directional;
+          castShadow: true;
+          intensity: 0.05;
+          color: #fff"
+        position="5 3 1"></a-entity>
+      <a-light intensity="0.15" type="ambient" position="1 1 1" color="#6909b3"></a-light>
+
+      <a-entity id="rig" position="0 -0.5 2">
+        <a-camera wasd-controls look-controls></a-camera>
+      </a-entity>
+      
+      <!-- terrain -->
+      <a-ocean shadow depth="50" width="50" amplitude="0" amplitude-variance="0.1" speed="1.5" speed-variance="1" opacity="1" density="50" color="#5f8496" metalness="1"></a-ocean>
+      <a-ocean shadow depth="50" width="50" opacity="0.5" amplitude="0" amplitude-variance="0.15" speed="1.5" speed-variance="1" density="50" color="#5f8496" metalness="1"></a-ocean>
+      <a-sphere shadow scale="2 2 2" shadow position="0 -3.5 -1.5" radius="2"></a-sphere>
+      
+      <a-entity shadow id="windmill" position="0 1 -1.5" rotation="0 0 0">
+        <a-cone flat-shading="true" radius-top="0.45" radius-bottom="0.65" segments-radial="6" height="0.5" position="0 -0.25 0"></a-cone>
+        <a-cone flat-shading="true" radius-top="0.3" radius-bottom="0.45" segments-radial="6" height="1" position="0 0.45 0"></a-cone>
+        <a-cylinder flat-shading="true" segments-radial="6" radius="1" height="0.1" position="0 -0.55 0"></a-cylinder>
+        <a-cone flat-shading="true" radius-top="0.25" radius-bottom="0.4" segments-radial="6" height="0.35" position="0 1 0"></a-cone>
+        <a-entity class="windmill-blades" position="0 1 0.45"
+                  animation__rot="property: rotation; from: 0 0 360; to: 0 0 0; dur:6000; loop: true; easing: linear">
+          <a-entity light="type: point; color: #09edda; intensity:0.2"></a-entity>
+          <a-entity light="type: point; color: #fff; intensity: 0.25; distance: 1.24" position="0 0 0.24"></a-entity>
+          <a-box depth="0.05" height="0.15" width="0.15"></a-box>
+          <a-box depth="0.07" height="0.05" width="1.1"></a-box>
+          <a-box depth="0.07" height="1.1" width="0.05"></a-box>
+          <a-box opacity="0.75" depth="0.05" height="0.6" width="0.25" position="0 0.45 0">
+            <a-box color="#FFF" height="0.02" depth="0.02" width="0.02" material="emissive: #fff785; emissiveIntensity: 1.01" position="0.12 0.3 0.1"></a-box>
+            <a-box color="#FFF" height="0.02" depth="0.02" width="0.02" material="emissive: #fff785; emissiveIntensity: 1.01" position="-0.12 0.3 0.1"></a-box>
+          </a-box>
+          <a-box opacity="0.75" depth="0.05" height="0.6" width="0.25" position="0 -0.45 0">
+            <a-box color="#FFF" height="0.02" depth="0.02" width="0.02" material="emissive: #fff785; emissiveIntensity: 1.01" position="0.12 -0.3 0.1"></a-box>
+            <a-box color="#FFF" height="0.02" depth="0.02" width="0.02" material="emissive: #fff785; emissiveIntensity: 1.01" position="-0.12 -0.3 0.1"></a-box>
+          </a-box>
+          <a-box opacity="0.75" depth="0.05" height="0.25" width="0.6" position="0.45 0 0">
+            <a-box color="#FFF" height="0.02" depth="0.02" width="0.02" material="emissive: #fff785; emissiveIntensity: 1.01" position="0.3 0.12 0.1"></a-box>
+            <a-box color="#FFF" height="0.02" depth="0.02" width="0.02" material="emissive: #fff785; emissiveIntensity: 1.01" position="0.3 -0.12 0.1"></a-box>
+          </a-box>
+          <a-box opacity="0.75" depth="0.05" height="0.25" width="0.6" position="-0.45 0 0">
+            <a-box color="#FFF" height="0.02" depth="0.02" width="0.02" material="emissive: #fff785; emissiveIntensity: 1.01" position="-0.3 0.12 0.1"></a-box>
+            <a-box color="#FFF" height="0.02" depth="0.02" width="0.02" material="emissive: #fff785; emissiveIntensity: 1.01" position="-0.3 -0.12 0.1"></a-box>
+          </a-box>
+        </a-entity>
+        <a-entity class="windmill-doors">
+<!--           <a-entity light="type: spot; color: #09edda; intensity: 0.25" rotation="0 180 0" position="0 -0.4 0.55"></a-entity> -->
+          <a-entity light="type: spot; color: yellow; intensity: 0.25" rotation="-30 180 0" position="0 -0.4 0.65"></a-entity>
+          <a-box width="0.25" height="0.25" depth="0.1" position="0 -0.4 0.6" material="emissive: #fff785; emissiveIntensity: 1.01" geometry=""></a-box>
+          <a-box width="0.05" height="0.25" depth="0.25" position="-0.1 -0.4 0.55" material="" geometry=""></a-box>
+          <a-box width="0.05" height="0.25" depth="0.25" position="0.1 -0.4 0.55" material="" geometry=""></a-box>
+          <a-box width="0.25" height="0.05" depth="0.25" position="0 -0.27 0.55" material="" geometry=""></a-box>
+        </a-entity>
+      </a-entity>
+      
+      <!-- tree templates -- out of sight! -->
+      <a-entity shadow id="tree-cylinder" position="-2 -2 0">
+        <a-cylinder radius="0.03"></a-cylinder>
+        <a-cylinder radius="0.15" height="0.35" position="0 0.5 0"></a-cylinder>
+        <a-sphere radius="0.15" position="0 0.675 0"></a-sphere>
+        <a-sphere radius="0.15" position="0 0.325 0"></a-sphere>
+      </a-entity>
+      <a-entity shadow id="tree-cone" position="-1 -2 0">
+        <a-cylinder radius="0.03"></a-cylinder>
+        <a-cone radius-bottom="0.25" position="0 0.5 0" height="0.65"></a-cone>
+      </a-entity>
+      <a-entity shadow id="tree-sphere" position="0 -2 0">
+        <a-cylinder radius="0.03"></a-cylinder>
+        <a-sphere radius="0.25" position="0 0.5 0"></a-sphere>
+      </a-entity>
+      
+      <a-entity shadow id="trees">
+<!--         <a-entity light="type: spot; color: yellow; intensity: 0.25" position="0.56306 0.3742 -0.27643" rotation="80 20 0"></a-entity> -->
+        <a-entity clone="#tree-cylinder" position="-1.51964 0.05118 -1.21064" scale="1.5 1.5 1.5"></a-entity>
+        <a-entity clone="#tree-cylinder" position="-1 0.25 -0.9"></a-entity>
+        <a-entity clone="#tree-cylinder" position="0.83166 -0.00112 -0.01389" scale="1.25 1.25 1.25"></a-entity>
+        <a-entity clone="#tree-cylinder" position="0.83523 0.1 -2.56242" scale="1.5 1.5 1.5"></a-entity>
+        <a-entity clone="#tree-cone" position="-0.8 0.3 -2.3" scale="1.5 1.5 1.5"></a-entity>
+        <a-entity clone="#tree-cone" position="-0.79286 0.1719 0.02114" scale="1.25 1.25 1.25"></a-entity>
+        <a-entity clone="#tree-cone" position="1.20276 0.28682 -0.7085" scale="1.75 1.75 1.75"></a-entity>
+        <a-entity clone="#tree-cone" position="-0.4751 0.30175 -0.54272" scale=""></a-entity>
+        <a-entity clone="#tree-sphere" position="-1.24929 0.13301 -0.4" scale=""></a-entity>
+        <a-entity clone="#tree-sphere" position="0.17986 0.04315 -2.70197" scale="1.5 1.5 1.5"></a-entity>
+        <a-entity clone="#tree-sphere" position="-1.30613 0.06495 -1.90264" scale="1.5 1.5 1.5"></a-entity>
+        <a-entity clone="#tree-sphere" position="1.27552 0.06495 -1.58362" scale="1.5 1.5 1.5"></a-entity>
+      </a-entity>
+    </a-scene>
+  </body>
+</html>
