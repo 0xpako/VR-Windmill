@@ -2,6 +2,8 @@
 
 Created using A-frame, Three.js
 
+Demo viewable at: https://vr-windmill.vercel.app/
+
 Orignally created by Alvin Wan
 Recreated by Mateusz Paczkowski ~Skillshare student of Alvin Wan :)
 
